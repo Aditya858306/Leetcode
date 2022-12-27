@@ -1,4 +1,4 @@
-class Solution
+/*class Solution
 {
     int findl(ListNode *l1)
     {
@@ -132,4 +132,4 @@ public:
         }
         return head2;
     }
-};
+};*/
