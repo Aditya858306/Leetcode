@@ -21,8 +21,10 @@ private:
         if(root->left == NULL and root->right == NULL and s == ts){
             return true;
         }
+        bool ans1 = helper(root->left , ts , s);
+        bool ans2 = helper(root->right , ts , s);
         
-        return helper(root->left , ts , s) || helper(root->right, ts , s);
+        return ans1 || ans2;
     }
 public:
     bool hasPathSum(TreeNode* root, int targetSum) {
