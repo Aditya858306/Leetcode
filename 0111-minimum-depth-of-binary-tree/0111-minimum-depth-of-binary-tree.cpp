@@ -24,14 +24,13 @@ private:
             int ans2 = helper(root->left , count);
             return ans2;
         }
-        else{
+    
             int ans1 = helper(root->left , count);
             int ans2 = helper(root->right , count);
             if(ans1 >= ans2){
                 return ans2;
             }
-            return ans1;
-        }      
+            return ans1;  
     }
 public:
     int minDepth(TreeNode* root) {
