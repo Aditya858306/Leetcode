@@ -10,26 +10,67 @@
  * };
  */
 class Solution {
-    void helper(TreeNode* root , string& s , int l , int a){
+//     void helper(TreeNode* root , string& s , int l , int a){
+//         if(root == NULL){
+//             if(a==0){
+//                 s+= "()";
+//             }
+            
+//             return;
+//         }
+//         s = s + "(" + to_string(root->val);
+//         if(root->left == NULL and root->right == NULL){
+//             s+=  ")";
+//             return;
+//         }
+//         helper(root->left , s , l+1 , 0);
+//         helper(root->right , s , l+1 , 1);
+        
+//         s += ")";
+//         return;
+         
+//     }
+    void helper(TreeNode* root , string& s , int l){
         if(root == NULL){
-            if(a==0){
-                s+= "()";
+            return;
+        }
+        else if(root->left == NULL and root->right == NULL){
+            s = s + "(" + to_string(root->val) + ")";
+            return;
+        }
+        else if(root->left != NULL and root->right == NULL){
+            if(l!=0){
+                s = s + "(" + to_string(root->val);
+            }
+            helper(root->left, s , l+1);
+            if(l != 0){
+                s += ")";
             }
             
-            return;
         }
-        s = s + "(" + to_string(root->val);
-        if(root->left == NULL and root->right == NULL){
-            s+=  ")";
-            return;
+        else if(root->left == NULL and root->right != NULL){
+            if(l == 0){
+                s += "()";
+            }
+            if(l != 0){
+                s = s  + "(" + to_string(root->val) + "()";
+            }
+            helper(root->right , s, l+1);
+            if(l!=0){
+                s += ")";
+            }
         }
-        helper(root->left , s , l+1 , 0);
-        helper(root->right , s , l+1 , 1);
-        
-        s += ")";
-        return;
-        
-        
+        else{
+            if(l!=0){
+                s = s + "(" + to_string(root->val);
+            }
+            
+            helper(root->left, s , l+1);
+            helper(root->right, s , 1+1);
+            if(l!=0){
+                s+=")";
+            }
+        }
     }
 public:
     string tree2str(TreeNode* root) {
@@ -37,13 +78,15 @@ public:
         if(root->left == NULL and root->right == NULL){
             return s;
         }
-        string s1 = "";
-        string s2 = "";
-        int l = 0;
-        helper(root->left , s1 , 1 , 0);
-        helper(root->right , s2 , 1 , 1);
         
-        return s+s1+s2;
+        helper(root , s , 0);
+        return s;
+        // string s1 = "";
+        // string s2 = "";
+        // int l = 0;
+        // helper(root->left , s1 , 1 , 0);
+        // helper(root->right , s2 , 1 , 1);
+        // return s+s1+s2;
         
     }
 };
