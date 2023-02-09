@@ -13,13 +13,13 @@ class Solution {
     void helper(TreeNode* root , string& ans){
         if (!root) return;   
         ans += to_string(root->val);
-        if (root->left) { //left side check
+        if (root->left) { 
             ans += '(';
             helper(root->left, ans);
             ans += ')';
         }
-        if (root->right) { //right side check
-            if (!root->left) ans += "()"; //left side not present, but right side present
+        if (root->right) {
+            if (!root->left) ans += "()";
             ans += '(';
             helper(root->right, ans);
             ans += ')';
