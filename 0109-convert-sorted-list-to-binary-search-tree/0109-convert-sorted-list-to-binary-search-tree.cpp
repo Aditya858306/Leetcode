@@ -32,6 +32,13 @@ class Solution {
     }
 public:
     TreeNode* sortedListToBST(ListNode* head) {
+        if(!head)
+            return NULL;
+        if(head->next == NULL)
+        {
+            TreeNode* root = new TreeNode(head->val);
+            return root;
+        }
         vector<int> v;
         ListNode* temp = head;
         while(temp != NULL)
