@@ -25,6 +25,7 @@ public:
                 ListNode* temp1 = new ListNode(max);
                 temp1->next = temp;
                 temp = temp1;
+                
                 s.pop();
             }
             else{
