@@ -1,22 +1,19 @@
 class Solution {
 public:
     int findCenter(vector<vector<int>>& edges) {
-        unordered_map<int , set<int> > adj;
-        int maxi;
-
-        for(int i = 0 ; i < edges.size() ; i++){
+        map<int,vector<int>>mp;
+        for(int i = 0; i<edges.size(); i++){
             int u = edges[i][0];
             int v = edges[i][1];
-
-            maxi = max(maxi ,max(u,v));
-
-            adj[u].insert(v);
-            adj[v].insert(u);
+            
+            mp[u].push_back(v);
+            mp[v].push_back(u);
         }
-
-        for(auto i : adj){
-            if(i.second.size() == maxi-1)
-                return i.first;
+        
+        for(auto j : mp){
+            if(j.second.size() == edges.size()){
+                return j.first;
+            }
         }
         return -1;
     }
