@@ -1,28 +1,22 @@
 class Solution {
 public:
     int findCenter(vector<vector<int>>& edges) {
-//         map<int,vector<int>>mp;
-//         for(int i = 0; i<edges.size(); i++){
-//             int u = edges[i][0];
-//             int v = edges[i][1];
-            
-//             mp[u].push_back(v);
-//             mp[v].push_back(u);
-//         }
-        
-//         for(auto j : mp){
-//             if(j.second.size() == edges.size()){
-//                 return j.first;
-//             }
-//         }
-//         return -1;
-        map<int,int> mp;
-        for (int i=0; i<edges.size(); i++){
-            mp[edges[i][0]]++;
-            mp[edges[i][1]]++;
+        unordered_map<int , set<int> > adj;
+        int maxi;
+
+        for(int i = 0 ; i < edges.size() ; i++){
+            int u = edges[i][0];
+            int v = edges[i][1];
+
+            maxi = max(maxi ,max(u,v));
+
+            adj[u].insert(v);
+            adj[v].insert(u);
         }
-        for (auto val: mp){
-            if (val.second== (edges.size()))return val.first;
+
+        for(auto i : adj){
+            if(i.second.size() == maxi-1)
+                return i.first;
         }
         return -1;
     }
