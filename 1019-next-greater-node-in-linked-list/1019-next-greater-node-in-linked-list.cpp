@@ -23,7 +23,7 @@ public:
             temp = temp->next;
         }
         int n = ans.size();
-        vector<int>a(n);
+        // vector<int>a(n);
         for(int i = n-1; i>=0; i--){
             int num = ans[i];
             
@@ -31,11 +31,11 @@ public:
                 s.pop();
             }
             
-            a[i] = s.top();
+            ans[i] = s.top();
             s.push(num);
         }
         
-        return a;
+        return ans;
         
     }
 };
